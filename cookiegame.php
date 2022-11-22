@@ -43,7 +43,7 @@ if ( isset($_GET["clear"])) {
         echo "<br>";
         echo "target is $target_value";
         setcookie($cookie_name, $cookie_value);
-        setcookie($cookie_name_guess, $cookie_value_guess)
+        setcookie($cookie_name_guess, $cookie_value_guess);
         setcookie($target_value_name, $target_value);
     }else{
         echo "Cookie is set!";
@@ -54,6 +54,8 @@ if ( isset($_GET["clear"])) {
         echo "<br>";
         echo "<a href='cookiegame.php?clear=1'>remove cookies</a>";
     }
+
+    //
     ?>
     
 </body>
