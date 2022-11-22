@@ -1,14 +1,13 @@
 <?php
 
-if ( isset($_GET["clear"])) {
-    if( isset($_COOKIE["userguess"])) {
-        setcookie("userguess", "", time() - 1000);
-        setcookie("targetvalue", "", time() - 1000);
-        header("Location: http://localhost/projects/Cookies/");
+if(isset($_GET["clear"])){
+    if(isset($_COOKIE["user"])){
+        setcookie("user", "", time() - 10);
+        setcookie("userguess", "", time() - 10);
+        header("Location: cookiegame.php");
         die();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -53,6 +52,12 @@ if ( isset($_GET["clear"])) {
         echo "Target is: " . $_COOKIE[$target_value_name];
         echo "<br>";
         echo "<a href='cookiegame.php?clear=1'>remove cookies</a>";
+    }
+
+    if( $_COOKIE[$cookie_name_guess] == $_COOKIE[$target_value_name]) {
+        echo "You guessed it right!";
+    }else{
+        echo "You guessed it wrong!";
     }
 
     //
