@@ -2,12 +2,18 @@
 
 if ( isset($_GET["clear"])) {
     if( isset($_COOKIE["guess-target"])) {
-        setcookie("guess-target", "", time() - 100);
-        setcookie("user-name", "", time() - 100);
-        header("Location: http//localhost/projects/cookies/index.php");
+        setcookie("guess-target", "", time() - 1000);
+        setcookie("user-name", "", time() - 1000);
+        header("Location: http://localhost/projects/Cookies/");
         die();
     }
 }
+
+//cookie game that generates a random number between 1 and 100
+//and stores it in a cookie.  Then, when the user submits a guess, it
+//checks the guess against the cookie and tells the user if they are
+//too high, too low, or correct.
+
 
 ?>
 
@@ -20,18 +26,28 @@ if ( isset($_GET["clear"])) {
     <title>Cookies</title>
 </head>
 <body>
-    
+    <?php
+    $_cookie_value "";
+    ?>
+    <h1>Guess the number</h1>
+    <p>Guess a number between 1 and 10</p>
+
+    <form action="index.php" method="post">
+        <input placeholder="Name" type="text" name="name">
+        <input placeholder="Guess" type="text" name="guess">
+        <input type="submit" value="Guess">
+    </form>
     <?php
 
     if( ! isset($_cookie["guess-target"])) {
         
-        echo "Welcome to the guessing game!";
+        $target = rand(1, 10);
         echo "<br>";
-        echo "cookie if not set!";
+        echo "cookie is not set!";
+        echo "<br>";
+        echo "target is $target";
+        setcookie("guess-target", $target);
 
-        $seconds_in_one_day = 60 * 60 * 24;
-        setcookie("guess-target", "13", time() + $seconds_in_one_day);
-        setcookie("user-name", "John", time() + $seconds_in_one_day);
 
     }else{
 
@@ -43,6 +59,7 @@ if ( isset($_GET["clear"])) {
         echo "<br>";
         echo "<a href='index.php?clear=1'>remove cookies</a>";
     }
+
     ?>
 
 </body>
