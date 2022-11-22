@@ -1,19 +1,61 @@
+<?php
+
+if ( isset($_GET["clear"])) {
+    if( isset($_COOKIE["userguess"])) {
+        setcookie("userguess", "", time() - 1000);
+        setcookie("targetvalue", "", time() - 1000);
+        header("Location: http://localhost/projects/Cookies/");
+        die();
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cookies</title>
 </head>
 <body>
+
+
+    <h1>Guess the number</h1>
+    <form action="cookiegame.php" method="post">
+        <input placeholder="Name" type="text" name="name">
+        <input placeholder="Guess" type="text" name="guess">
+        <input type="submit" value="Guess" >
+    </form>
+
     <?php
 
     $cookie_name = "user";
-    $cookie_value = rand(1, 10);
-    setcookie($cookie_name, $cookie_value, time() - 1000); // 86400 = 1 day
+    $cookie_value = $_POST["name"];
+    $cookie_name_guess = "userguess";
+    $cookie_value_guess = $_POST["guess"];
+    $target_value_name = "targetvalue";
+    $target_value = rand(1, 10);
 
-
+    if( ! isset($_COOKIE[$cookie_name_guess])) {
+        echo "Cookie is not set!";
+        echo "<br>";
+        echo "target is $target_value";
+        setcookie($cookie_name, $cookie_value);
+        setcookie($cookie_name_guess, $cookie_value_guess)
+        setcookie($target_value_name, $target_value);
+    }else{
+        echo "Cookie is set!";
+        echo "<br>";
+        echo "Value is: " . $_COOKIE[$cookie_name_guess];
+        echo "<br>";
+        echo "Target is: " . $_COOKIE[$target_value_name];
+        echo "<br>";
+        echo "<a href='cookiegame.php?clear=1'>remove cookies</a>";
+    }
     ?>
+    
 </body>
 </html>
+

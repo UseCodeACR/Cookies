@@ -1,21 +1,5 @@
-<?php
-
-if ( isset($_GET["clear"])) {
-    if( isset($_COOKIE["guess-target"])) {
-        setcookie("guess-target", "", time() - 1000);
-        setcookie("user-name", "", time() - 1000);
-        header("Location: http://localhost/projects/Cookies/");
-        die();
-    }
-}
-
-//cookie game that generates a random number between 1 and 100
-//and stores it in a cookie.  Then, when the user submits a guess, it
-//checks the guess against the cookie and tells the user if they are
-//too high, too low, or correct.
 
 
-?>
 
 <!DOCTYPE html>
 <html lang="en">
