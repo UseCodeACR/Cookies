@@ -41,9 +41,9 @@ if ( isset($_GET["clear"])) {
         echo "<br>";
         echo "value is: " . $_COOKIE["user-name"];
         echo "<br>";
-        echo "<a href='index.php?clear=true'>Clear cookies</a>";
+        echo "<a href='index.php?clear=1'>remove cookies</a>";
     }
-
+    ?>
 
 </body>
 </html>
