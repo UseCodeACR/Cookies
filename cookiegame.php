@@ -51,12 +51,15 @@ if(isset($_GET["clear"])){
         echo "<br>";
         echo "Target is: " . $_COOKIE[$target_value_name];
         echo "<br>";
-        echo "<a href='cookiegame.php?clear=1'>remove cookies</a>";
+        
+        
     }
 
     if( $_COOKIE[$cookie_name_guess] == $_COOKIE[$target_value_name]) {
+        echo "<br>";
         echo "You guessed it right!";
     }else{
+        echo "<br>";
         echo "You guessed it wrong!";
     }
 
