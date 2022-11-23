@@ -30,14 +30,30 @@ if(isset($_GET["clear"])){
     </form>
 
     <?php
-
+    if(isset($_POST["name"]) && isset($_POST["guess"])){
+        $name = $_POST["name"];
+        $guess = $_POST["guess"];
+        $number = rand(1, 10);
+        setcookie("user", $name, time() + 5);
+        setcookie("userguess", $guess, time() + 5);
+        if($guess == $number){
+            echo "You guessed right!";
+        }else{
+            echo "You guessed wrong!";
+        }
+    }
+    if(isset($_COOKIE["user"])){
+        echo "<h2>Hi $_COOKIE[user], your guess is $_COOKIE[userguess]</h2>";
+    }
+    
+    /*
     $cookie_name = "user";
     $cookie_value = $_POST["name"];
     $cookie_name_guess = "userguess";
     $cookie_value_guess = $_POST["guess"];
     $target_value_name = "targetvalue";
     $target_value = rand(1, 10);
-
+    
     if( ! isset($_COOKIE[$cookie_name_guess])) {
         echo "Cookie is not set!";
         echo "<br>";
@@ -64,7 +80,7 @@ if(isset($_GET["clear"])){
         echo "You guessed it wrong!";
     }
 
-    //
+    */
     ?>
     
 </body>
